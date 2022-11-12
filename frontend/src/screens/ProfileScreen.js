@@ -16,16 +16,16 @@ const ProfileScreen = ({ location, history }) => {
 
   const dispatch = useDispatch();
 
-  const userDetails = useSelector(state => state.userDetails);
+  const userDetails = useSelector((state) => state.userDetails);
   const { loading, error, user } = userDetails;
 
-  const userLogin = useSelector(state => state.userLogin);
+  const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  const userUpdateProfile = useSelector(state => state.userUpdateProfile);
+  const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
   const { success } = userUpdateProfile;
 
-  const orderListMy = useSelector(state => state.orderListMy);
+  const orderListMy = useSelector((state) => state.orderListMy);
   const { loading: loadingOrders, error: errorOrders, orders } = orderListMy;
 
   useEffect(() => {
@@ -42,7 +42,7 @@ const ProfileScreen = ({ location, history }) => {
     }
   }, [dispatch, history, userInfo, user]);
 
-  const submitHandler = e => {
+  const submitHandler = (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       setMessage('Password do not match');
@@ -66,7 +66,7 @@ const ProfileScreen = ({ location, history }) => {
               type='name'
               placeholder='Enter Your Name'
               value={name}
-              onChange={e => setName(e.target.value)}
+              onChange={(e) => setName(e.target.value)}
             ></Form.Control>
           </Form.Group>
 
@@ -76,7 +76,7 @@ const ProfileScreen = ({ location, history }) => {
               type='email'
               placeholder='Enter email'
               value={email}
-              onChange={e => setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
             ></Form.Control>
           </Form.Group>
 
@@ -86,7 +86,7 @@ const ProfileScreen = ({ location, history }) => {
               type='password'
               placeholder='Enter password'
               value={password}
-              onChange={e => setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
             ></Form.Control>
           </Form.Group>
 
@@ -96,7 +96,7 @@ const ProfileScreen = ({ location, history }) => {
               type='password'
               placeholder='Confirm Password'
               value={confirmPassword}
-              onChange={e => setConfirmPassword(e.target.value)}
+              onChange={(e) => setConfirmPassword(e.target.value)}
             ></Form.Control>
           </Form.Group>
 
@@ -112,9 +112,15 @@ const ProfileScreen = ({ location, history }) => {
         ) : errorOrders ? (
           <Message variant='danger'>{errorOrders}</Message>
         ) : (
-          <Table striped bordered hover responsive className='table-sm'>
+          <Table
+            striped
+            bordered
+            hover
+            responsive
+            className='table-sm text-center'
+          >
             <thead>
-              <tr>
+              <tr className='text-center'>
                 <th>ID</th>
                 <th>DATE</th>
                 <th>TOTAL</th>
@@ -124,7 +130,7 @@ const ProfileScreen = ({ location, history }) => {
               </tr>
             </thead>
             <tbody>
-              {orders.map(order => (
+              {orders.map((order) => (
                 <tr key={order._id}>
                   <td>{order._id}</td>
                   <td>{order.createdAt.substring(0, 10)}</td>

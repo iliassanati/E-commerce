@@ -9,13 +9,13 @@ import { listUsers, deleteUser } from '../actions/userActions';
 const UserList = ({ history }) => {
   const dispatch = useDispatch();
 
-  const userList = useSelector(state => state.userList);
+  const userList = useSelector((state) => state.userList);
   const { loading, error, users } = userList;
 
-  const userLogin = useSelector(state => state.userLogin);
+  const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  const userDelete = useSelector(state => state.userDelete);
+  const userDelete = useSelector((state) => state.userDelete);
   const { success: successDelete } = userDelete;
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const UserList = ({ history }) => {
     }
   }, [dispatch, history, userInfo, successDelete]);
 
-  const deleteHandler = id => {
+  const deleteHandler = (id) => {
     if (window.confirm('Are you sure')) {
       dispatch(deleteUser(id));
     }
@@ -51,7 +51,7 @@ const UserList = ({ history }) => {
             </tr>
           </thead>
           <tbody>
-            {users.map(user => (
+            {users.map((user) => (
               <tr key={user._id}>
                 <td>{user._id}</td>
                 <td>{user.name}</td>
